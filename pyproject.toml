@@ -30,6 +30,7 @@ rsw-waveset-precession = "rsw_sphere.plotting.precession_plot:main"
 include = ["rsw_sphere*"]
 
 [tool.pytest.ini_options]
+pythonpath = ["."]
 markers = [
     "slow: real integration (RK44 sweeps/trajectories, multi-second each) -- pytest -m 'not slow' for the short suite; plain pytest (default) runs everything.",
 ]
