@@ -54,8 +54,15 @@ TARGET_MODE_KEY = "d"  # RH(2,9): near-zero IC, growth measures efficiency.
 IC_DIRECTION = np.array([1.0, 1.0, 1.0, 1e-3], dtype=complex)  # in spec.mode_keys order (a,b,c,d)
 
 # Each system's own control/peak amplitude scale (Table precession_comparison).
+# RSW_PEAK_SCALE: the RSW efficiency curve is non-monotonic over the swept
+# range (SCALES_RSW below) -- it rises to a first local maximum near this
+# scale, dips by roughly a factor of 5 percentage points around scale=0.1,
+# then rises again toward the sweep's own upper cap (0.25) without clearly
+# exceeding this first maximum there (checked directly, 2026-09-07: 21.8%
+# at 0.05 vs. 20.6% at 0.25) -- this is the scale actually used for the
+# control/peak comparison, not merely a round-number reference point.
 BARO_CONTROL_SCALE, BARO_PEAK_SCALE = 2e-4, 1.8e-3
-RSW_CONTROL_SCALE, RSW_PEAK_SCALE = 3e-3, 3e-2
+RSW_CONTROL_SCALE, RSW_PEAK_SCALE = 3e-3, 5e-2
 
 # Sweep ranges for Figure borrowed_topology_precession -- capped
 # independently per system (checked directly, not assumed): barotropic to
