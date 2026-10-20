@@ -86,6 +86,10 @@ def plot(coeff, rh12, path: str = None):
     ax2.set_title("(b) Effect on RH(1,2)")
     ax2.legend()
 
+    n_values = sorted({r["n"] for r in coeff if "error" not in r})
+    for ax in (ax1, ax2):
+        ax.set_xticks(n_values)
+
     fig.tight_layout()
     if path:
         os.makedirs(os.path.dirname(path), exist_ok=True)
