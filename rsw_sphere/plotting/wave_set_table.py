@@ -77,8 +77,13 @@ def wave_set_properties(spec, N: int = 10, deg: int = 300) -> dict:
         coef[i_sum, t] = ws.alpha[t, 2]
 
         idx_local = [i_p, i_q, i_sum]
-        pump_local = int(np.argmax(np.abs(ws.alpha[t])))
-        pump_index = idx_local[pump_local]
+        # Pump mode: energy tendencies are alpha_p : alpha_q : -alpha_sum
+        # (WaveSet.f), so the pump is the one mode whose effective sign
+        # differs from the other two (paper table tab: pump). argmax|alpha|
+        # only agrees with this at zero mismatch. None if all signs agree.
+        eff_sign = np.sign(np.real(ws.alpha[t]) * np.array([1.0, 1.0, -1.0]))
+        odd = [j for j in range(3) if np.count_nonzero(eff_sign == eff_sign[j]) == 1]
+        pump_index = idx_local[odd[0]] if odd else None
 
         if abs(ws.residual[t]) > 1e-6:
             warnings.warn(
@@ -95,8 +100,8 @@ def wave_set_properties(spec, N: int = 10, deg: int = 300) -> dict:
             'delta': np.real(ws.delta[t]),
             'S': np.real(ws.S[t]),
             'pump_index': pump_index,
-            'pump_key': spec.mode_keys[pump_index],
-            'pump_label': mode_labels[pump_index],
+            'pump_key': spec.mode_keys[pump_index] if pump_index is not None else None,
+            'pump_label': mode_labels[pump_index] if pump_index is not None else 'none',
             'residual': np.real(ws.residual[t]),
         })
 

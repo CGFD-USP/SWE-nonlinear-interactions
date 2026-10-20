@@ -32,8 +32,8 @@ CAPTION = (
     r"$\omega$, linear period (days), and coupling coefficient within "
     r"whichever constituent triad(s) contain it (Coeff.$_1$/Coeff.$_2$, "
     r"$-$ where a mode isn't in that triad), the triad's mismatch "
-    r"$\delta$, and each triad's own pump mode (largest coupling "
-    r"coefficient). Quartet B's own precession-comparison table "
+    r"$\delta$, and each triad's own pump mode (from the signs of its "
+    r"coupling coefficients, Table \ref{tab: pump}). Quartet B's own precession-comparison table "
     r"(Table \ref{tab: precession_comparison}) is separate."
 )
 

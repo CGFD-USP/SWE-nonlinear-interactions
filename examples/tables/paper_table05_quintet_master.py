@@ -27,8 +27,8 @@ CAPTION = (
     r"$\omega$, linear period (days), and coupling coefficient within "
     r"whichever constituent triad(s) contain it (Coeff.$_1$/Coeff.$_2$/"
     r"Coeff.$_3$, $-$ where a mode isn't in that triad), each triad's "
-    r"mismatch $\delta$, and its own pump mode (largest coupling "
-    r"coefficient)."
+    r"mismatch $\delta$, and its own pump mode (from the signs of its "
+    r"coupling coefficients, Table \ref{tab: pump})."
 )
 
 
